@@ -1,0 +1,111 @@
+# Bio-informatics Databases
+
+## **Uniprot**
+
+### Compositions and sources
+
+#### Compositions
+
+- UniProtKB/Swiss-Prot (manually annotated and reviewed)
+- UniProtKB/TrEMBL (automatically annotated and not reviewed)
+
+#### Sources
+
+- Uniprot: all encapsulate
+- UniRef: Non-redundant
+- UniParc: Records previous status
+
+### Accession
+
+#### Representation
+
+ `reg exp: [OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}`
+
+ `Q10289: Q-1-028-9`
+
+ `A2BC19：A-2-(B-C1-9)`
+
+ `A0A023GPI8: A-0-(A-02-3)-(G-PI-8)`
+
+#### Accession Merge and Demerge
+
+## **BLAST alignment**
+
+For both protein sequence alignment amd nucleotide sequence alignment.
+
+### BLAST Setup
+
+#### **Max target sequences**
+
+#### **Max matches in a query range**
+
+#### **Database:**
+
+- Clustered db like **UniRef90** and **UniRef50** are more prefered, where UniRef90 clusters sequences have 90% sequence identity. UniRef50 clusters sequences have 50% sequence identity.
+- RefSeq and Swiss-Prot
+
+#### **Scoring matrix:**
+
+Read about substitution matrices on [Wikipedia](https://en.wikipedia.org/wiki/Substitution_matrix) and [NCBI BLAST](https://www.ncbi.nlm.nih.gov/blast/html/sub_matrix.html).
+
+### Result Interpretation: GenBank and Graphview
+
+View external information for each hit from the link to **GenBank** or **Graphview** (legend: [NCBI Graphview legend interpretation](https://www.ncbi.nlm.nih.gov/tools/sviewer/legends/#anchor_8))
+
+### Result Interpretation: Layout
+
+|Organism|Blast Name|Score|Number of Hits|
+|---|---|---|---|
+|Relevant close to far, the most distantly-related taxon locates at the last second row| |Descending|Descending|
+
+### Result Interpretation: Parameters
+
+#### **Query Coverage**: The length of the match
+
+$$
+Coverage = \frac {Alignment\quad length} {Query\quad sequence\quad length} × 100\%
+$$
+
+#### **Score:**
+
+#### **E-value:** The significance of the match
+
+##### Formula to calculate
+
+$$
+E=K \times m \times n \times e^ {-lambda\times S}
+$$
+
+Where *S* denotes the homolog scores between two sequences, *m* denotes the length of the target sequence, *n* denotes the size of database, and *K* and *n* are parameters depending on algorithm and database.
+
+##### Values
+
+- E-value < 0.01: commonly considered significant, but there are features of biological sequences which can confound this so care is advised
+
+- E-value < 1e-5: usually homologues
+
+- E-value > 0.01: doesn't necessarily mean a hit is false
+
+- E-values are normalized basing on each database, only E-values from the same db are comparable.
+
+- Bit scores between BLAST searches with different query sequences are not comparable.
+
+#### **Length of hit**
+
+> It is possible to get good (i.e. small) e-values even if only a small regions of your query sequence is matched by a hit. In such instances you might consider very short matches as False Positives, even when the e-values are below the values you're looking for.
+
+### Other BLAST algorithm
+
+|Search Programme|Query|Hit|
+|---|---|---|
+|BLASTX|Input nucleotide, translate/ map to protein|Protein db|
+|TBLASTN|Input protein|Nucleotide db, map to protein|
+|TBLASTX|Input nucleotide, map to protein|Nucleotide db, map to protein|
+
+### Result inspection
+
+Check the organism of query and hit.
+
+Hit has high bit score but presents in a irrelevant organism might be a FP.
+
+## **MSA**
