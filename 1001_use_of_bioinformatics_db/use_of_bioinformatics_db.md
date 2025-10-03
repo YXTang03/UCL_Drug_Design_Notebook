@@ -93,9 +93,9 @@ LDDT is the sum of dRMSD and GDT. dRMSD do not align reference sequence and mobi
 $v_t$ and $v_p$ are two vectors representing distance information in reference protein and mobile protein. Suppose the reference protein has a sequence length $n$, $v_t\in\mathbb{R}^\frac{n\times (n-1)}2$, in which each component represents a distance between two identical atoms in the reference sequence. This applies to $v_p$ as well.
 
 $$
-LDDT_r = \frac{100}{4L}\sum_{t\in\left\{0.5, 1, 2, 4\right\}}\sum_{i=1}^L\frac{\sum_{j, |i-j|>r, D_{ij}<15}(|D_ij-d_ij|<t)}{\sum_{j, |i-j|>r, D_{ij}<15}1}
+LDDT_r = \frac{100}{4L}\sum_{t\in\left\{0.5, 1, 2, 4\right\}}\sum_{i=1}^L\frac{\sum_{j, |i-j|>r, D_{ij}<15}(|D_{ij}-d_{ij}|<t)}{\sum_{j, |i-j|>r, D_{ij}<15}1}
 $$
 
-$D_ij$ is the distance between atom $i$ and atom $j$ in the reference sequence, and $d_ij$ is those in the mobile sequence. $L$ is the sequence length. $t$ is the pre-setted threshold. Summation is conducted on atom pairs meet $D_{ij}<15$ and $|i-j|\geq r$
+$D_{ij}$ is the distance between atom $i$ and atom $j$ in the reference sequence, and $d_{ij}$ is those in the mobile sequence. $L$ is the sequence length. $t$ is the pre-setted threshold. Summation is conducted on atom pairs meet $D_{ij}<15$ and $|i-j|\geq r$
 
 [^1]: [Align algorithm](https://ieeexplore.ieee.org/document/88573)
