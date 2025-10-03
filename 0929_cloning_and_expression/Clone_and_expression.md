@@ -1,4 +1,4 @@
-# Clone and Expression
+# Design an Expression Construct
 
 The very basic procedure is to find out the gene sequence expressing the protein we want to clone, and to insert the gene sequence into specific vector.
 
