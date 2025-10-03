@@ -86,7 +86,7 @@ $$
 d_0(L_N)=1.24\sqrt[3]{L_N-15}-1.8
 $$
 
-##### LDDT
+##### LDDT[^2]
 
 LDDT is the sum of dRMSD and GDT. dRMSD do not align reference sequence and mobile sequence before calculation, but calculate $v_t$ and $v_p$.
 
@@ -96,6 +96,7 @@ $$
 LDDT_r = \frac{100}{4L}\sum_{t\in\left\{0.5, 1, 2, 4\right\}}\sum_{i=1}^L\frac{\sum_{j, |i-j|>r, D_{ij}<15}(|D_{ij}-d_{ij}|<t)}{\sum_{j, |i-j|>r, D_{ij}<15}1}
 $$
 
-$D_{ij}$ is the distance between atom $i$ and atom $j$ in the reference sequence, and $d_{ij}$ is those in the mobile sequence. $L$ is the sequence length. $t$ is the pre-setted threshold. Summation is conducted on atom pairs meet $D_{ij}<15$ and $|i-j|\geq r$
+$D_{ij}$ is the distance between atom $i$ and atom $j$ in the reference sequence, and $d_{ij}$ is those in the mobile sequence. $L$ is the sequence length. $t$ is the pre-set threshold. Summation is conducted on atom pairs meet $D_{ij}<15$ and $|i-j|\geq r$
 
 [^1]: [Align algorithm](https://ieeexplore.ieee.org/document/88573)
+[^2]: [LDDT paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC3799472/)
