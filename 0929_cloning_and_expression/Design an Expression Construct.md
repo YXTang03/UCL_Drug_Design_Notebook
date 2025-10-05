@@ -70,7 +70,7 @@ The insertion of nucleic acid sequence must locates at the right side of `A-T` p
 
 #### Avoid self-rejoin
 
-Another point is that both terminals of the cutting site should not be compatible with each other, aiming to avoid tshe self-rejoin of plasmid terminals
+Another point is that both terminals of the cutting site should not be compatible with each other, aiming to avoid the self-rejoin of plasmid terminals
 
 #### Avoid frame-shift mutation
 
@@ -88,6 +88,65 @@ Two objects:
 
 Note that, the optimised codons will not replace the original codons automatically. Copy optimised codons and substitude the original codons to apply the optimisation.
 
-### Add Kozak consensus sequence
+#### Insertion Direction
+
+Another point to be aware of is the 'direction' of inseted gene segments. Due to the DNA is a double-stranded structure, if the protein we desire is expressed by the gene segment on the reverse chain, we should not simply insert the gene in a forward direction, but its reversed complementary nucleic acids sequence.
+
+One example is the question in the homework:
+
+> If you have time, try performing the same process with a prokaryotic expression vector: [pET-14b](https://www.addgene.org/vector-database/2542/) for expression in E. coli with an N-terminal hexahistidine tag. To to this you need to make sure that the codons of the insert line up with the codons of the histidine tag so there is no ‘frame-shift’ mutation.
+
+The gene sequence expressing 6 His tag locates on the reverse chain. Meanwhile, I have to keep the tag on the N-terminal of the expressed protein.
+
+I first tried to address the problem by reversing the string and mapping its complementary base in a dict in Python:
+
+        forward_seq = 'ATGTCAGCCAAGGACGAGCGGGCCAGGGAGATCCTGAGGGGCTT'
+        pattern = {
+        'A':'T', 'T':'A', 
+        'C':'G', 'G':'C'
+        }
+        implementary_seq = ''
+
+        for i in forward_seq[::-1]:
+            i_ = pattern[i]
+            implementary_seq += i_
+
+        print(implementary_seq)
+
+But this is obviously not very elegant.
+
+An alternative solution I came up with is to create a new session in Benchling Lab, after which, copy its DNA reverse complement.
+
+![alt text](image-11.png)
+
+### Add Kozak Consensus Sequence
 
 >Efficient initiation of translation in eukaryotes requires the presence of the Kozak consensus sequence, most commonly GCCGCCACCAUGG where ‘AUG’ corresponds with the start methionine ATG codon. This particular plasmid lacks this sequence, so we can add it by placing the cursor before the start codon and typing GCCGCCACC without anything else selected.
+
+### Verify the Construct in [InterPro](https://www.ebi.ac.uk/interpro/)
+
+In this section, I try to identify whether the InterPro search is sensitive to the inputted sequence. Thus I upload:
+
+- [The forward protein sequence expressed by the inserted gene segment](#forward-vs-reverse)
+- [The reverse protein sequence expressed by the inserted gene segment](#forward-vs-reverse)
+- [The codon-optimized reverse protein sequence expressed by the inserted gene segment](#codon-optimized-vs-un-optimized)
+- [The reverse protein sequence with a 6-His Tag](#the-reverse-protein-sequence-with-a-6-his-tag)
+
+Results are shown in following screenshots:
+
+#### Forward vs reverse
+
+Protein chain expressed by the forward nucleic acids segment matches 0 hit, while the reversed expressed protein matches with 82 hits.
+![alt text](image-12.png)
+
+#### Codon optimized vs un-optimized
+
+![alt text](image-13.png)
+![alt text](image-16.png)
+![alt text](image-15.png)
+
+#### The reverse protein sequence with a 6-His Tag
+
+![alt text](image-17.png)
+Zoom in, we have a 6-His tag on the N-terminal indeed.
+![alt text](image-18.png)
