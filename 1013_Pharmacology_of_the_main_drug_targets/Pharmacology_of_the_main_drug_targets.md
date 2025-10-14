@@ -68,6 +68,7 @@ $$
 More specifically, the whole process can be described as **Association**, **Steady state**, and **Dissociation**. <b><font color="#EC8A99">Among these different stages, dissociation stage represents affinities between drugs and receptors.</font></b>
 
 ![alt text](image.png)
+
 Note that, there are three equations on the figure:
 
 Association rate:
@@ -146,5 +147,43 @@ Sometimes, there are might be some receptors (GPCRs or mutation-induced) are *in
 The results of efficacy and potency shifts can be diverse:
 
 ![alt text](image-3.png)
+
+## **Enzyme Pharmacology**
+
+### Reaction Rate
+
+The measurement of reaction rate assuming the experimente system neither runs out of substrates nor has an abundance of substrate. (Measurements start at the point where 10% substrate is depleted.) This ensures the accuracy and sensitivity of assay.
+
+Reaction rate and some constants can be figured out through this equation and experiment data.
+
+$$
+v = \frac {V_{max} \cdot [S]} {[S]+K_m}
+$$
+
+where $v$ denotes the reaction rate, $v_{max}$ denotes the maximal reaction rate, and $K_m$ denotes the <font color = 'EC8A99'> concentration of the substrate when reaction reaches half of $v_{max}$</font> (**Michaelis constant**)
+
+Linearisation of Michaelis-Menten curve is based on some prerequisites, which may incur error. Only linearise data when checking its quality.
+
+### View inhibitors from Michaelis-Menten Equation
+
+|Inhibitor Type|$V_{max}$|$K_m$|
+|:---:|:---:|:---:|
+|Competitive Inhibitor|/|$\uparrow$|
+|Non-competitive Inhibitor|$\downarrow$|/|
+|Uncompetitive Inhibitor*|$\downarrow$|$\downarrow$|
+
+*: Uncompetitive inhibitors interact with the $E-S$ complexes, which both hinders productions of product and dissociations.
+
+Persumably, the interaction site is <font color = 'cyan'>known, and drugable</font>. A <font color = 'cyan'>competitive inhibitor</font> might be a good choice. Whereas in the condition that the interaction site is <font color = 'orange'>not drugable</font>, having poor hydrophilic property for example. <font color = 'orange'>Allosteric (Non-competitive) inhibitors</font> are good alternatives.
+
+In terms of competitive inhibition:
+![alt text](image-4.png)
+smaller off-rate $k_{off}$ indicates a longer effect.
+
+#### Time-dependent Inhibition
+
+The <font color = 'EC8A99'> $k_{off}$</font> values of time-dependent inhibitors change with respect to time. According to the equation $K_f = \frac {k_{off}} {k_{on}}$, their <font color = 'EC8A99'> inhibition capabilities increase</font>, which further reflect changes in their <font color = 'EC8A99'> potency</font>.
+
+In this case, the original metrics like $k_a$ and $k_d$ are meaningless.
 
 [^1]: G proteins contain 3 subunits, $G_\alpha$, $G_\beta$, and $G_\gamma$. Among these subunits, $G_\alpha$ is the most investigated and in charge of cascade signal transduction. $G_\beta$ and $G_\gamma$ can signal as a dimer.
