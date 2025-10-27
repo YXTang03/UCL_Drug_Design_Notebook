@@ -15,7 +15,7 @@ Each assay takes on different liability in the whole process.
 
 #### **Quantitate Competitive inhibitors using $K_i$**
 
-There is a problem to be considered when measuring inhibition constant $K_i$ in real experiments. So, in practical experiments, we cannot measuring the inhibition constant without intruducing substrate[^1]. However, in this case, the experiment readouts does not really represent the inhibition ability of inhibitors, but the relative affinity of inhibitors against substrates to the binding sites.
+There is a problem to be considered when measuring inhibition constant $K_i$ in real experiments. So, in practical experiments, we cannot measuring the inhibition constant without intruducing substrate[^1]. However, in this case, the experiment readouts do not really represent the inhibition ability of inhibitors, but the relative affinity of inhibitors against substrates to the binding sites.
 
 To measuring true values, callibration is required. This is the start point of Cheng-Prusoff equation:
 
@@ -31,7 +31,7 @@ $$
 
 where $IC_{50}$ is the half inhibition concentration of inhibitors (note that, $IC_{50}$ is measured in presence of enzyme, substrate, and competitive inhibitors), $K_m$ is the Michaelis-Menten constant representing the substrate concentration when enzyme activity reaching half of maximum, $[S]$ is the concentration of substrate.
 
-The ratio $\frac {[S]} {K_m}$ represents to what extend the substrate under experiment concentration binds to the enzyme. If the experiment $[S] \gg K_m$, the callibration factor will be very large, to eliminate the effect of introducing substrate. In contrast, if $[S] \approx 0$, the $K_i$ approximate $IC_{50}$.
+The ratio $\frac {[S]} {K_m}$ represents to what extend the substrate under experiment concentration binds to the enzyme. If the experiment $[S] \gg K_m$, the callibration factor will be very large, to eliminate the effect of introducing substrate. In contrast, if $[S] \approx 0$, the $K_i$ approximates $IC_{50}$.
 
 ### **$K_D$, $k_{on}$, and $k_{off}$**
 
@@ -43,14 +43,14 @@ where $k_{on}$ and $k_{off}$ is the association rate constant and dissociation r
 
 Compounds with <font color = 'EC8A99'>slow off</font> rates can have selectivity and pharmacokinetics advantages
 
-### **Z` and Z for evaluating measurement reliability**
+### **Z' and Z for evaluating measurement reliability**
 
-$Z`$ is an evaluation of separation degree between positive and negative signals.
+$Z'$ is an evaluation of separation degree between positive and negative signals.
 
 $$
-Z` = 1- \frac {3\times (SD_{positive} + SD_{negative})} {Mean_{positive} - Mean_{negative}}
+Z' = 1- \frac {3\times (SD_{positive} + SD_{negative})} {Mean_{positive} - Mean_{negative}}
 $$
-We often assuming $SD_{positive} = SD_{negative}$ basing on the experiment noises comply I.I.D. A common threshold $Z` = 0.5$ implies:
+We often assuming that $SD_{positive} = SD_{negative} = SD$ basing on the experimental noises comply with I.I.D. A common threshold $Z' = 0.5$ implies:
 
 $$
 \frac {3\times (SD_{positive} + SD_{negative})} {Mean_{positive} - Mean_{negative}} = 0.5\\[16pt]
@@ -74,13 +74,13 @@ Biophysical assays are used to measure physical signal changes caused by the **d
 
 Some characteristic parameters including $k_{on}$, $k_{off}$, and $K_D$ they derived, not accurately represented by $EC_{50}$ are accessible through biophysical assays.
 
-The application ofbiophysical assays are limited by its lower throughput and larger sample consumption.
+The application of biophysical assays is limited by its lower throughput and larger sample consumption.
 
 Commonly used assays include:
 
-- Surface Plasmon Resonance (**SPR**): For the measurement of binding affinity, specificity, and kinetics.
+- Surface Plasmon Resonance (**SPR**): For the measurement of binding affinity ($k_{on}$, $k_{off}$, and $K_d$), specificity, and kinetics.
 
-- Differential Scanning Fluorimetry (**DSF**): For the determination of **dissociation constant** [^2], monitor **thermal transitions of proteins**, etc.
+- Differential Scanning Fluorimetry (**DSF**): For the determination of **dissociation constant** [^2], monitor **thermal transitions of proteins** (such as unfolding), etc.
 
 - Isothermal Titration Calorimetry (**ITC**): Very sensitive. Label free. But low throughput.
 
@@ -90,7 +90,7 @@ Commonly used assays include:
 
 Biochemical assays, featured for its high throughput, are approaches that measure impact on **protein activities**, compound **potencies**.
 
-There are some points are mentioned in this section:
+There are some points mentioned in this section:
 
 ### Methods used to assay the activity of kinases: ADP-Glo kit
 
@@ -102,11 +102,11 @@ This is a method to evaluate reaction velocity, which plot time against substrat
 
 Prerequisites of the valid of reaction progression curve includes:
 
-- Establish the measurement at a linear range where commonly represented by 10-20% substrate conversion rate.
+- Establish the measurement at a linear range where it is commonly represented by 10-20% substrate conversion rate.
 
 Outcomes of progression curve, reaction rate, are used to calculate enzyme constants through MM equation, with the substrate concentration (with a concentration unit) plotted against reaction rate (with a unit holds the form of concentration/ time).
 
-- MM assay is expected to be carried out with $[S]<K_m$ (sQSSA).
+- MM assay is expected to be carried out when satisfying $[S]<K_m$ (sQSSA).
 
 ### Scintillation Proximity Assay (SPA)
 
