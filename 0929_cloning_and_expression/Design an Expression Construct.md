@@ -22,7 +22,7 @@ On the new page, information such as biological role, Function/mechanism, Tissue
 
 ![alt text](image-2.png)
 
-Note that, entries start with accession *NM_* indicate that they are mRNA. The whole sequence structures in these entries can be represented in the following figure:
+Note that, entries start with accession *NM_* indicate that they are mRNAs. The whole sequence structures in these entries can be represented in the following figure:
 
 ![alt text](image-3.png)
 
