@@ -10,11 +10,13 @@
 
 ## Common Drug Targets
 
-|
-
 ### **Ion Channels**
 
 This kind of drug targets are often located in the CNS and used to pain control.
+
+The change of potential serves as an easy means to evaluate a single receptor's activity.
+
+Voltage sensitive dyes can be used.
 
 ### **GPCR**
 
@@ -81,7 +83,7 @@ The longer the dissociation state lasts, the higher affinity of drug has to its 
 
 #### Meaning of Affinity
 
-Higher affinity also means the lower dosage and administration frequency are needed. These outcomes benifit in terms of decreasing off-target effects, achieving long-term actions, improving patient compliances.
+Higher affinity also means that a lower dosage and administration frequency are needed. These outcomes benifit in terms of decreasing off-target effects, achieving long-term actions, and improving patient compliances.
 
 #### Quantitative Description: Dissociation Constant $K_D$
 
@@ -91,7 +93,7 @@ Higher affinity also means the lower dosage and administration frequency are nee
 
 Efficacy describes to what extent responses are elicited after the binding occurs.
 
-*Binding* does not mean response. But if a drug show efficacy, it must bind somewhere.
+*Binding* does not mean response. But if a drug shows efficacy, it must bind somewhere.
 
 Sometimes we do not want a very high efficacy aiming to get rid of side effects.
 
@@ -121,7 +123,7 @@ To get the maximum inhibitory concentration, you need to know what your inhibite
 
 ![alt text](<Full vs Partial Agonist.png>)
 
-Full agonist elicit 100% efficacy, while partial agonist are weaker in terms of efficacy. (There is nothing to do with potency)
+Full agonists elicit 100% efficacy, while partial agonists are weaker in terms of efficacy. (There is nothing to do with potency)
 
 ### **Antagonist**
 
@@ -154,17 +156,31 @@ The results of efficacy and potency shifts can be diverse:
 
 The measurement of reaction rate assuming the experimente system neither runs out of substrates nor has an abundance of substrate. (Measurements start at the point where 10% substrate is depleted.) This ensures the accuracy and sensitivity of assay.
 
+![alt text](image-5.png)
+
+#### **Michaelis-Menten Equation**
+
 Reaction rate and some constants can be figured out through this equation and experiment data.
 
 $$
 v = \frac {V_{max} \cdot [S]} {[S]+K_m}
 $$
 
-where $v$ denotes the reaction rate, $v_{max}$ denotes the maximal reaction rate, and $K_m$ denotes the <font color = 'EC8A99'> concentration of the substrate when reaction reaches half of $v_{max}$</font> (**Michaelis constant**)
+where $v$ denotes the reaction rate, $v_{max}$ denotes the maximal reaction rate, and $K_m$ denotes the <font color = 'EC8A99'> concentration of the substrate when reaction reaches half of $v_{max}$</font> (**Michaelis constant**).
+
+A typical Michaelis-Menten curve is shown below:
+
+![alt text](image-6.png)
+
+A tradition means to process the Michaelis-Menten equation is using Lineweaver-Burk double reciprocal plot:
+$$
+\frac 1 v = \frac 1 {V_{max}} + \frac {K_m} {V_{max}}\times \frac 1 {[S]}
+$$
+![alt text](image-7.png)
 
 Linearisation of Michaelis-Menten curve is based on some prerequisites, which may incur error. Only linearise data when checking its quality.
 
-### View inhibitors from Michaelis-Menten Equation
+### Inhibitors from the View of the Michaelis-Menten Equation
 
 |Inhibitor Type|$V_{max}$|$K_m$|
 |:---:|:---:|:---:|
@@ -174,7 +190,7 @@ Linearisation of Michaelis-Menten curve is based on some prerequisites, which ma
 
 *: Uncompetitive inhibitors interact with the $E-S$ complexes, which both hinders productions of product and dissociations.
 
-Persumably, the interaction site is <font color = 'cyan'>known, and drugable</font>. A <font color = 'cyan'>competitive inhibitor</font> might be a good choice. Whereas in the condition that the interaction site is <font color = 'orange'>not drugable</font>, having poor hydrophilic property for example. <font color = 'orange'>Allosteric (Non-competitive) inhibitors</font> are good alternatives.
+Persumably, the interaction site is <font color = 'SteelBlue'>known, and drugable</font>. A <font color = 'SteelBlue'>competitive inhibitor</font> might be a good choice. Whereas in the condition that the interaction site is <font color = 'orange'>not drugable</font>, having poor hydrophilic property for example. <font color = 'orange'>Allosteric (Non-competitive) inhibitors</font> are good alternatives.
 
 In terms of competitive inhibition:
 ![alt text](image-4.png)
