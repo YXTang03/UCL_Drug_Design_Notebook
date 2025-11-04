@@ -134,6 +134,7 @@ The experiment objects can be various:
 |---|---|---|---|
 |Parameters obtained from assays|$k_{on}, k_{off}, K_{D}$|Potencies ($EC_{50}$,$IC_{50}$, $K_i$[^3]); Protein activities|Cellular level metrics (cell activities). To model diseases accurately.|
 |Throughput|Lower than biochemical assays| High|Often high throughput|
+|Typical methods|Surface Plasmon Resonance(SPR), Differential Scanning Fluorimetry(DSF), Isothermal Titration Calorimetry(ITC)|Promega ADP-Glo kit, Scintillation Proximity Assay(SPA), Forster Resonance Energy Transfer(FRET)|...|
 
 [^1]: Enzymes will not show catalyst activity in the absence of substrate.
 
