@@ -26,6 +26,8 @@ Note that, entries start with accession *NM_* indicate that they are mRNAs. The 
 
 ![alt text](image-3.png)
 
+Regions beyond the CDS but included in exons are `5' untranslated region`(5' UTR) and `3' untranslated region`(3'UTR). These sequences are not translated into proteins, but facilitate the initiation or regulation of translations.
+
 Those entries starting with *NG_* or *NC_*, which contain introns, refer to *genome reference sequences* and *chromosome sequences*.
 
 Focus on the following fields in the new page:
@@ -34,7 +36,7 @@ Focus on the following fields in the new page:
 
 **Exon**:  click 'exon'. A part of the gene sequence will be highlighted.
 
-**CDS**: click 'CDS' (codons). Highlighted part reflects what is translated by a ribosome. The sequence starts with a start codon and terminates with a terminating codon. We can also find a translated protein sequence at the bottom-left area.
+**CDS**: click 'CDS' (Coding Sequence). Highlighted part reflects what is translated by a ribosome. The sequence starts with a start codon and terminates with a terminating codon. We can also find a translated protein sequence at the bottom-left area.
 
 What we want in this job is the codon sequence, since some genomic fragments in the whole gene or exons do not express protein, clicking `Display: FASTA` enables us to copy the codon sequence.
 
