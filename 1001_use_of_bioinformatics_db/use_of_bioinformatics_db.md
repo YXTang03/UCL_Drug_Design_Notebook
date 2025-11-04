@@ -12,7 +12,7 @@ Witness the common parts at which quite different drugs bind.
 
 ## Structue explains evolution
 
-**Structure tends not to change mych over evolutionary time, whereas the sequence can change a lot.** Things which have diverged quite a long way may have very different sequences, which are almost impossible to detect by sequence search methods. But the structures will have remained the same because it is a structure that is key for performing the function.
+**Structure tends not to change much over evolutionary time, whereas the sequence can change a lot.** Things which have diverged quite a long way may have very different sequences, which are almost impossible to detect by sequence search methods. But the structures will have remained the same because it is a structure that is key for performing the function.
 
 During the evolutionary time, key domains occurs over and over again. Evolution keeps the things work maybe adds things on to modify that function.
 
@@ -75,7 +75,7 @@ Caution that structures are aligned[^1] first, and all atoms except hydrogens ar
 ##### TM-Score
 
 $$
-S_TM = \frac1{L_N}{\sum_{i=1}^{N_T}}\frac1{1+(\frac{d_i}{d_0(L_N)})^2}
+S_{TM} = \frac1{L_N}{\sum_{i=1}^{N_T}}\frac1{1+(\frac{d_i}{d_0(L_N)})^2}
 $$
 
 $N_T$ is the number of matched residue pairs. $d_i$ is the euclidean distance of a pair of aligned residues. $L_N$ is the number of residues in reference sequences.

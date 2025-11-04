@@ -84,9 +84,9 @@ MCS is a region in a cloning vector which does not exist in the wild-type E. col
 
 There is a strategy to identify whether a gene sequence has been correctly inserted into the MCS called '<font color='steelblue'>blue</font> <font color='white'>white</font> selection'.
 
- MCS before recombinant -express-> One kind of protein -add specific substrate-> Become blue
+    MCS before recombinant -express-> One kind of protein -add specific substrate-> Become blue
 
- MCS with inserted sequence -> Fail to express that kind of protein -> No colour change when substrate added.
+    MCS with inserted sequence -> Fail to express that kind of protein -> No colour change when substrate added.
 
 ###### Restriction enzymes
 
