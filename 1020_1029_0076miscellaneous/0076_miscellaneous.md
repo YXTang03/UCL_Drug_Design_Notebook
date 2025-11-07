@@ -24,8 +24,26 @@ The expressed protein is a long polyprotein initially, which must be cleaved by 
 
 ### HIV Drug Targets: Capsid
 
+Capsid function:
+
+- Migrates through the cytoplasm and nuclear envelope to deliver viral DNA to chromatin.
+- Protects viral genome from degradation by nucleases and innate immune sensing in the cytoplasm.
+- The site of reverse transcription of viral RNA into DNA.
+- Bound by a series of host cofactors which regulate reverse transcription and uncoating.
+
 ## October 21: Omics
 
+ Human genome mapping can be thought of in different ways:
+ 1. DNA sequencing – determine the physical position of every base pair in the genome
+ 2. Functional annotation – determine the location of functional sites in the genome
+ 3. Mapping variation – sequencing in different populations to determine the sites in DNA that differ between populations (modern definition). Generally, determine the locations of variant regions in the genome
+ 4. Mapping traits – utilising all the maps above to determine how variations in DNA correlate with variations in traits (**phenotypes**)
+
+Evidence for human genomics as a tool for drug target identification 
+- (Drug repurposing) Rediscovery of know drug target-disease pairings 
+- (Increase approval rate) Higher rates of approval for drug target-disease indication pairs with genetic support
+- (Reveal diseases)Findings from genome wide association studies in specific disease areas
+- Successful development of drugs motivated by human genomics
 ## October 22: Biological Statistics
 
 ### Descriptive Statistics

@@ -109,7 +109,7 @@ $$
 Coverage = \frac{Alignment\quad length}{Query\quad sequence\quad length}\times 100\%
 $$
   
-#### **Percentile Identity**: What proportion of amino acids are identical in the compared region
+#### **Percentile Identity**: What proportion of amino acids is identical in the compared region
 
 $$
 Identity = \frac {Alignment\quad length}{min(A, B)}\times 100 \%
@@ -168,6 +168,37 @@ Hit with a high bit score but presents in an irrelevant organism might be an FP.
 Also, be aware of **Low complexity regions**. Low complexity regions are regions composed of highly duplicated regions, which are commonly observed in hydrophobic regions of transmembrane proteins. A BLAST search may hit these sequences and yield high scores, but be devoid of biological meaning.
   
 ## **MSA**
-  
+
+## **Bioinformatics as evolutionary analysis**
+
+### Concepts to be clear: Homolog, Paralog, and Ortholog
+
+- Homolog: Two genes sharing the same ancestor are homologous.
+- Paralog: homologs found within an organism.
+- Ortholog: homologs found between organisms.
+
+### Mutation under molecule-level aspect
+
+The predominant mutations are detrimental, with organisms being purified in turn.
+The remained mutations can either be neutral in phenotype (randomly accepted) or positive.
+
+#### Mutation at genetic level
+
+- Substitution (silent, missense, or nonsense)
+- Insertion
+- Deletion
+
+#### Mutation at chromosomal level
+- Deletion  
+- Translocation and inversion
+- Gene conversion
+- Duplication 
+
+There are various possible fates of the gene which undergoes a duplication:
+
+- Exerting the same effect as the original gene.
+- Being "muted": lose expression ability.
+- Evolving to undertake new biology functions.
+
 [^1]: the usually case is that k=3, which means the whole table contains $20^3$ trigram residue tuples.
   

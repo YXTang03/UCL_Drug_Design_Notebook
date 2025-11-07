@@ -32,18 +32,27 @@ Characteristic absorb wavelength of protein: aromatic rings, cystines and disulp
 Operations include harvesting cell by centrifugation, lysing cells in a protease inhibitor cocktail, removing cell debris by centrifugation (different rpm).
 
 ### **Step2: Capture**
+large sample volume, quick-and-dirty, little product loss
+#### Methods: Size exclusion chromatography: 
 
-#### Methods: large sample volume, quick-and-dirty, little product loss
+Capture proteins basing on their [size (MW) difference](#before-purification)
 
-- Size exclusion chromatography: Capture proteins basing on their [size (MW) difference](#before-purification)
+- High resolution but poor column volume. Target proteins might be diluted in power during this process, which limits its applicatioin in the first capture step, but be an option in the last polishing step.
 
-- Ion exchange chromatography: Capture proteins basing on their [different surface charge](#before-purification).
+#### Methods: Ion exchange chromatography: 
 
-- [Hydrophobic chromatography](#before-purification)
+Capture proteins basing on their [different surface charge](#before-purification).
+
+- Eluting the bound proteins out using salt solution with higher ionic intensity
+- Large column volume and high resolution. IEC can be applied in either the capture step or polishing step.
+
+#### Methods: [Hydrophobic chromatography](#before-purification)
 
 >利用蛋白质的疏水性，蛋白经变性处理或处于高盐环境下疏水残基会暴露于蛋白表面，不同蛋白疏水残基与固定相的疏水性配体之间的作用强弱不同，依次用从高至低离子强度洗脱液可将疏水用作由弱至强的组分分离。
 
-- [Affinity chromatography](#before-purification): Target proteins, or engineered target proteins, bind to stationary phase covalently. e.g. IMAC[^1] (imobilised metal ion chromatography) is used to capture histidine, cystine, or tryptophan rich proteins. One often used peptide sequence in IMAC is 6-His tag.
+#### Methods: [Affinity chromatography](#before-purification): 
+
+Target proteins, or engineered target proteins, bind to stationary phase covalently. e.g. IMAC[^1] (imobilised metal ion chromatography) is used to capture histidine, cystine, or tryptophan rich proteins. One often used peptide sequence in IMAC is 6-His tag.
 
 ### **Step3: Intermediate step** (remove contaminants)
 
