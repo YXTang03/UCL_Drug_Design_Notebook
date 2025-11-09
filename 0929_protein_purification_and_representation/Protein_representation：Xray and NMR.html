@@ -1,9 +1,9 @@
 <!DOCTYPE html><html><head>
-      <title>Design an Expression Construct</title>
+      <title>Protein_representation: Xray and NMR</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\hp\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -24,105 +24,81 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="design-an-expression-construct">Design an Expression Construct </h1>
-<p>The very basic procedure is to find out the gene sequence expressing the protein we want to clone, and to insert the gene sequence into a specific vector.</p>
-<h2 id="protein-sequence-to-gene-sequence">Protein Sequence to Gene Sequence </h2>
-<h3 id="obtain-the-protein-sequence-in-pdb">Obtain the Protein Sequence in PDB </h3>
-<p><img src="image-1.png" alt="alt text"></p>
-<p>So we get the protein FASTA sequence.</p>
-<p>More information about the protein sequence is available in the Sequence Tab or Uniprot.</p>
-<h3 id="blast-protein-to-gene">BLAST Protein to Gene </h3>
-<p>The BLAST tool used here is tblastn, which 'translates' a protein sequence into a nucleic acid sequence.</p>
-<p>Remember to change <code>Database</code> to <code>RefSeq Select RNA sequences (refseq_select)</code>.</p>
-<p>On the new page, information such as biological role, Function/mechanism, Tissue of origin, Disease relevance/known mutation can be found. This time, we just focus on its GeneBank <strong>accession</strong>.</p>
-<p><img src="image-2.png" alt="alt text"></p>
-<p>Note that, entries start with accession <em>NM_</em> indicate that they are mRNAs. The whole sequence structures in these entries can be represented in the following figure:</p>
-<p><img src="image-3.png" alt="alt text"></p>
-<p>Regions beyond the CDS but included in exons are <code>5' untranslated region</code>(5' UTR) and <code>3' untranslated region</code>(3'UTR). These sequences are not translated into proteins, but facilitate the initiation or regulation of translations.</p>
-<p>Those entries starting with <em>NG_</em> or <em>NC_</em>, which contain introns, refer to <em>genome reference sequences</em> and <em>chromosome sequences</em>.</p>
-<p>Focus on the following fields in the new page:</p>
-<p><strong>Gene</strong>: Clicking 'gene' will show you a whole gene sequence at the bottom of the page.</p>
-<p><strong>Exon</strong>:  click 'exon'. A part of the gene sequence will be highlighted.</p>
-<p><strong>CDS</strong>: click 'CDS' (Coding Sequence). Highlighted part reflects what is translated by a ribosome. The sequence starts with a start codon and terminates with a terminating codon. We can also find a translated protein sequence at the bottom-left area.</p>
-<p>What we want in this job is the codon sequence, since some genomic fragments in the whole gene or exons do not express protein, clicking <code>Display: FASTA</code> enables us to copy the codon sequence.</p>
-<p>Now, we have finished all preparation steps. We will move to <a href="https://benchling.com/">Benchling Lab</a> and start inserting the obtained gene sequence into a vector.</p>
-<h2 id="obtain-vector-sequence">Obtain Vector Sequence </h2>
-<p>The vector is first obtained via <a href="www.addgene.org">Addgene</a>. Search for the vector we want and copy the sequence.</p>
-<h2 id="insert-sequence-into-vector-in-benchling-lab">Insert Sequence into Vector in Benchling Lab </h2>
-<p>Go back to <a href="https://benchling.com/">Benchling Lab</a>, and create a new DNA sequence.</p>
-<p><img src="image-4.png" alt="alt text"></p>
-<h3 id="add-annotations">Add Annotations </h3>
-<p>Some annotations can be added automatically, or add them manually according to instructions.</p>
-<h3 id="insertion">Insertion </h3>
-<p>The recognition segment and the cutting site are shown when hovering mouse over a restriction enzyme name.</p>
-<p><img src="image-5.png" alt="alt text"><img src="image-6.png" alt="alt text"></p>
-<p>One critical point to be aware of is how to select the right place to insert the gene.</p>
-<p>Taking the second restriction enzyme as an example, the purple highlighted area is the enzyme recognition segment, with a zig-zag solid line referring to the cutting site.</p>
-<h4 id="insertion-location">Insertion Location </h4>
-<p>The insertion of nucleic acid sequence must locate at the right side of <code>A-T</code> pair or the left side of <code>T-A</code> pair on margins of the recognition segment, although the cutting is irrelevant to <code>T-A</code> and <code>A-T</code>, because the insertion within recognition segment may 'damage' the recognition segment.</p>
-<h4 id="avoid-self-rejoin">Avoid self-rejoin </h4>
-<p>Another point is that both terminals of the cutting site should not be compatible with each other, aiming to avoid the self-rejoin of plasmid terminals</p>
-<h4 id="avoid-frame-shift-mutation">Avoid frame-shift mutation </h4>
-<p>Moreover, the inserted nucleic acid sequence must line up with the ORF and have a sequence length of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">3n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span></span></span></span> so there is no 'frame-shift' mutation.</p>
-<h4 id="optimize-inserted-codons">Optimize Inserted Codons </h4>
-<blockquote>
-<p>One important consideration is that the insert should not be cut by the restriction enzymes that will be used in cloning.<br>
-If we are getting the coding sequence synthesised, we can do two things at once: make sure that the codons that are being used give the protein the best chance at high expression, and avoid sites recognised by restriction enzymes we are planning on using.</p>
-</blockquote>
-<p>Two objectives:</p>
+<h1 id="protein-representation">Protein Representation </h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>X-ray</th>
+<th>NMR</th>
+<th>EM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Required sample amount</td>
+<td>Large</td>
+<td>Smaller than X-ray</td>
+<td>Smaller than X-ray</td>
+</tr>
+<tr>
+<td>Required sample properties</td>
+<td>1. Absolute homogenuity<br> 2. Easy to form crystal and regular lattice</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sample preparation</td>
+<td>Requires growing crystals</td>
+<td>Isotopic labelling</td>
+<td>1. Negative staining EM: Heavy atom staining<br> 2. Cryo EM: Quick frozen using liquid nitrogen</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>Highest</td>
+<td>N/A</td>
+<td>High, but lower than X-ray</td>
+</tr>
+<tr>
+<td>Imaging property</td>
+<td>Captures a single snapshoot of proteins in the lowest energy conformation</td>
+<td>Represents relative positions of protons</td>
+<td>Imaging proteins approximating the physiological status in aqueous environment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="x-ray">X-ray </h2>
+<p>Scatter positions<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>Lattice parameters (how proteins are arranged in a crystal)<br>
+Scatter intensity<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>The arrangement of atoms/electrons</p>
+<h3 id="phase-problem">Phase Problem </h3>
+<p>Solution: Molecular replacement or Isomorphous replacement.</p>
+<h2 id="electron-microscopic">Electron Microscopic </h2>
+<h3 id="ns-em">NS-EM </h3>
 <ul>
-<li>Make sure there are no restriction enzyme recognition sites.</li>
-<li>Balance the base usage.</li>
+<li>Higher contrast</li>
+<li>Staining using heavy metal salts, which may change the protein spatial structures</li>
+<li>Lower resolution</li>
 </ul>
-<p>Note that, the optimised codons will not replace the original codons automatically. Copy optimised codons and substitute the original codons to apply the optimisation.</p>
-<h4 id="insertion-direction">Insertion Direction </h4>
-<p>Another point to be aware of is the 'direction' of inserted gene segments. Since the DNA is a double-stranded structure, if the protein we desire is expressed by the gene segment on the reverse chain, we should not simply insert the gene in a forward direction, but its reversed complementary nucleic acid sequence.</p>
-<p>One example is the question in the homework:</p>
-<blockquote>
-<p>If you have time, try performing the same process with a prokaryotic expression vector: <a href="https://www.addgene.org/vector-database/2542/">pET-14b</a> for expression in E. coli with an N-terminal hexahistidine tag. To to this you need to make sure that the codons of the insert line up with the codons of the histidine tag so there is no ‘frame-shift’ mutation.</p>
-</blockquote>
-<p>The gene sequence expressing 6 His tag is located on the reverse chain. Meanwhile, we have to keep the tag on the N-terminal of the expressed protein.</p>
-<p>I first tried to address the problem by reversing the string and mapping its complementary base in a dict in Python:</p>
-<pre class="language-text">    forward_seq = 'ATGTCAGCCAAGGACGAGCGGGCCAGGGAGATCCTGAGGGGCTT'
-    pattern = {
-    'A':'T', 'T':'A', 
-    'C':'G', 'G':'C'
-    }
-    implementary_seq = ''
-
-    for i in forward_seq[::-1]:
-        i_ = pattern[i]
-        implementary_seq += i_
-
-    print(implementary_seq)
-</pre>
-<p>But this is obviously not very elegant.</p>
-<p>An alternative solution I came up with is to create a new sequence in Benchling Lab, after which, copy its DNA reverse complement.</p>
-<p><img src="image-11.png" alt="alt text"></p>
-<h3 id="add-kozak-consensus-sequence">Add Kozak Consensus Sequence </h3>
-<blockquote>
-<p>Efficient initiation of translation in eukaryotes requires the presence of the Kozak consensus sequence, most commonly GCCGCCACCAUGG where ‘AUG’ corresponds with the start methionine ATG codon. This particular plasmid lacks this sequence, so we can add it by placing the cursor before the start codon and typing GCCGCCACC without anything else selected.</p>
-</blockquote>
-<h3 id="verify-the-construct-in-interprohttpswwwebiacukinterpro">Verify the Construct in <a href="https://www.ebi.ac.uk/interpro/">InterPro</a> </h3>
-<p>In this section, I tried to identify whether the InterPro search is sensitive to the inputted sequence. Thus I uploaded:</p>
+<h3 id="cryo-em">Cryo-EM </h3>
 <ul>
-<li><a href="#forward-vs-reverse">The forward protein sequence expressed by the inserted gene segment</a></li>
-<li><a href="#forward-vs-reverse">The reverse protein sequence expressed by the inserted gene segment</a></li>
-<li><a href="#codon-optimized-vs-un-optimized">The codon-optimized reverse protein sequence expressed by the inserted gene segment</a></li>
-<li><a href="#the-reverse-protein-sequence-with-a-6-his-tag">The reverse protein sequence with a 6-His Tag</a></li>
+<li>Lower contrast</li>
+<li>More close to the natural conformation</li>
+<li>Higher resolution</li>
 </ul>
-<p>Results are shown in the following screenshots:</p>
-<h4 id="forward-vs-reverse">Forward vs reverse </h4>
-<p>Protein chain expressed by the forward nucleic acid segment matches 0 hit, while the reversed expressed protein matches with 82 hits.<br>
-<img src="image-12.png" alt="alt text"></p>
-<h4 id="codon-optimized-vs-un-optimized">Codon optimized vs un-optimized </h4>
-<p><img src="image-13.png" alt="alt text"><br>
-<img src="image-16.png" alt="alt text"><br>
-<img src="image-15.png" alt="alt text"></p>
-<h4 id="the-reverse-protein-sequence-with-a-6-his-tag">The reverse protein sequence with a 6-His Tag </h4>
-<p><img src="image-17.png" alt="alt text"><br>
-Zooming in, we have a 6-His tag on the N-terminal indeed.<br>
-<img src="image-18.png" alt="alt text"></p>
+<p>Samples are not firmly fixed in ice. This is attributed to</p>
+<ol>
+<li>Freezing sample quickly to avoid the formation of solid lattice</li>
+<li>The emitted electron beams raise local energy and induce motions</li>
+</ol>
+<p>Introducing Fab domain:</p>
+<ol>
+<li>increasing subunit size for a better contrast</li>
+<li>Introducing asymmetricity</li>
+</ol>
+<h2 id="small-angle-x-ray-scatter">Small Angle X-ray Scatter </h2>
+<p>Low resolution, only being used to glimpse protein overall shapes.</p>
+<h2 id="im-ms">IM-MS </h2>
+<p>Proteins are accelerated in a magnetic field and inert gas environment. Their immigration rates depend on aerodynamic resistances and surface areas.</p>
 
       </div>
       

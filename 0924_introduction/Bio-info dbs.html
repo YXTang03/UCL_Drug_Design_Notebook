@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -25,45 +25,194 @@
       <div class="crossnote markdown-preview  ">
       
 <h1 id="bio-informatics-databases">Bio-informatics Databases </h1>
-<h2 id="uniprot"><strong>Uniprot</strong> </h2>
+<p></p>
+<h2 id="genebank-for-nucleic-acid-data"><strong>GeneBank for nucleic acid data</strong> </h2>
+<p></p>
+<h2 id="uniprot-for-protein-sequences"><strong>Uniprot for protein sequences</strong> </h2>
+<p></p>
 <h3 id="compositions-and-sources">Compositions and sources </h3>
+<p></p>
 <h4 id="compositions">Compositions </h4>
+<p></p>
 <ul>
 <li>UniProtKB/Swiss-Prot (manually annotated and reviewed)</li>
 <li>UniProtKB/TrEMBL (automatically annotated and not reviewed)</li>
 </ul>
 <h4 id="sources">Sources </h4>
+<p></p>
 <ul>
 <li>Uniprot: all encapsulate</li>
 <li>UniRef: Non-redundant</li>
 <li>UniParc: Records previous status</li>
 </ul>
-<h3 id="accessionhttpswwwuniprotorghelpaccession_numbers"><a href="https://www.uniprot.org/help/accession_numbers">Accession</a> </h3>
+<h3 id="accessionhttpswwwuniprotorghelpaccession_numbers-"><a href="https://www.uniprot.org/help/accession_numbers">Accession</a> </h3>
+<p></p>
 <blockquote>
 <p>Accessions are stable identifiers and should be used to cite UniProtKB entries. Upon integration into UniProtKB, each entry is assigned a unique accession number, which is called 'Primary (citable) accession number'.<br>
 We remind users that they should always use the primary accession number of an entry in any citation and link since it is the only unique stable identifier for an entry.</p>
 </blockquote>
-<h4 id="representation">Representation </h4>
-<p><code>reg exp: [OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}</code></p>
-<p><code>Q10289: Q-1-028-9</code></p>
-<p><code>A2BC19：A-2-(B-C1-9)</code></p>
-<p><code>A0A023GPI8: A-0-(A-02-3)-(G-PI-8)</code></p>
-<h4 id="accession-merge-and-demerge">Accession Merge and Demerge </h4>
-<h2 id="blast-alignment"><strong>BLAST alignment</strong> </h2>
-<p>For both protein sequence alignment and nucleotide sequence alignment.</p>
-<h3 id="blast-setup">BLAST Setup </h3>
-<h4 id="max-target-sequences"><strong>Max target sequences</strong> </h4>
-<h4 id="max-matches-in-a-query-range"><strong>Max matches in a query range</strong> </h4>
-<h4 id="database"><strong>Database:</strong> </h4>
+<h2 id="pdb-for-protein-structures"><strong>PDB for protein structures</strong> </h2>
+<p></p>
+<h2 id="protein-sequence-alignment"><strong>Protein Sequence Alignment</strong> </h2>
+<p></p>
+<blockquote>
 <ul>
-<li>Clustered db like <strong>UniRef90</strong> and <strong>UniRef50</strong> are more prefered, where UniRef90 clusters sequences have 90% sequence identity. UniRef50 clusters sequences have 50% sequence identity.</li>
-<li>RefSeq and Swiss-Prot</li>
+<li>Sequences longer than 150 amino acids with over 25% sequence identity are probably related.</li>
+<li>With between only 15 and 25% sequence identity, they may be related (TWILIGHT ZONE)</li>
+<li>With less than 15% sequence identity, additional information, such as structural and functional, is required to determine if the proteins are related.</li>
 </ul>
-<h4 id="scoring-matrix"><strong>Scoring matrix:</strong> </h4>
-<p>Read about substitution matrices on <a href="https://en.wikipedia.org/wiki/Substitution_matrix">Wikipedia</a> and <a href="https://www.ncbi.nlm.nih.gov/blast/html/sub_matrix.html">NCBI BLAST</a>.</p>
+</blockquote>
+<h3 id="global-alignment-algorithm-using-dynamic-programming-needleman-wunsch-algorithm"><strong>Global Alignment Algorithm Using Dynamic Programming: Needleman-Wunsch Algorithm</strong> </h3>
+<p><img src="image.png" alt="alt text"><br>
+&nbsp;<br>
+Some fundamental concepts behind this algorithm is <em>match</em>, <em>mismatch</em>, and <em>gap</em>. In above figure, what we can see is some slashed lines and some horizontal/vertical lines, with the horizontal/vertical lines denoting <em>gaps</em>, the coloured slashes denoting <em>matched residues</em>.<br>
+&nbsp;<br>
+According to this figure, the horizontal line indicates that to maximise the overall score, four gaps are introduced into Sequence B to align with residue <code>HVNS</code> in Sequence A. The verticle line indicates two gaps are introduced into Sequence A in contrast.</p>
+<h4 id="python-implementation">Python Implementation </h4>
+<p>Following is a Needleman-Wunsch algorithm implemented in Python:</p>
+<pre class="language-text">import numpy as np
+
+class NW():
+    def __init__(
+            self, seqa:str, seqb:str, 
+            match, mismatch, gap
+    ):
+        self.seqa = seqa
+        self.seqb = seqb
+        self.match_score = match
+        self.mismatch_score = mismatch
+        self.gap_score = gap
+        self.matrix = np.zeros((len(seqa)+1, len(seqb)+1))
+        self.matrix.fill(np.inf)
+        self.matrix[:, 0] = [self.gap_score * i for i in range(self.matrix.shape[0])]
+        self.matrix[0, :] = [self.gap_score * j for j in range(self.matrix.shape[1])]
+
+                
+    def _scoring(self):
+        for row_idx, i in enumerate(self.matrix):
+            for col_idx, j in enumerate(i):
+                
+                if j != np.inf:
+                    pass
+                else:
+                    '''
+                    lt: right top (diagonal)
+                    lt_: rt + match or mismatch
+                    rb: right bottom
+                    lt: left top
+                    '''
+                    lt = self.matrix[row_idx-1, col_idx-1]
+                    lt_ = lt + self.match_score if self.seqa[row_idx-1] == self.seqb[col_idx-1] else lt + self.mismatch_score
+                    
+                    lb = self.matrix[row_idx, col_idx-1]
+                    rt = self.matrix[row_idx-1, col_idx]
+
+                    score = np.max([lt_, lb+self.gap_score, rt+self.gap_score])
+
+                    self.matrix[row_idx, col_idx] = score
+
+        return self.matrix
+    
+    def _traceback(self,):
+        seqa_output, seqb_output = [], []
+        row = self.matrix.shape[0] - 1
+        col = self.matrix.shape[1] - 1
+
+        while row &gt; 0 or col &gt; 0:
+
+            # How N&amp;W gets rid of local optimum
+
+            #print(f'row: {row}, col: {col}')
+            current_score = self.matrix[row, col]
+
+            if row &gt; 0 and col &gt;0:
+                #match_val = self.match_score if self.seqa[row-1] == self.seqb[col-1] else self.mismatch_score
+                match_val = self.match_score if self.seqa[row-1] == self.seqb[col-1] else self.mismatch_score
+                #print(match_val)
+                if current_score == self.matrix[row-1, col - 1] + match_val:
+                    seqa_output.append(self.seqa[row-1])
+                    seqb_output.append(self.seqb[col-1])
+                    
+                    row -= 1
+                    col -= 1
+                    continue
+                
+            if col&gt;0 and current_score == self.matrix[row, col - 1] + self.gap_score:
+                seqa_output.append('-')
+                seqb_output.append(self.seqb[col-1])
+                col -= 1
+                continue
+
+            if row &gt; 0 and current_score == self.matrix[row - 1, col] + self.gap_score:
+                
+                seqa_output.append(self.seqa[row-1])
+                seqb_output.append('-')
+                row -= 1
+                
+                continue
+
+                
+        seqa_output.reverse(), seqb_output.reverse()
+        return seqa_output, seqb_output
+    
+    def align(self):
+        score_matrix = self._scoring()
+        #print(score_matrix)
+        seqa_output, seqb_output = self._traceback()
+        return seqa_output, seqb_output
+
+nw = NW(seqa, seqb, match=1, mismatch=-1, gap=-2)
+seqa_, seqb_ = nw.align()
+</pre>
+<p>As what the code shows, there are some major flaws in this algorithm:</p>
+<h4 id="some-problems-to-be-solved">Some Problems to be Solved </h4>
+<p></p>
+<ul>
+<li>The scoring procedure is not flexible enough. To resolve this problem, <a href="https://en.wikipedia.org/wiki/Substitution_matrix">substitution matrices</a> might be an option.</li>
+<li>High time complexity <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>O</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mi>n</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">O_{(mn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0385em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">mn</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span>. So <a href="#heuristic-search-algorithm">heuristic search algorithms</a> are needed.</li>
+<li>Considering sequence similarity only. Proteins with closely related sequences are less universal in the evolution process.</li>
+</ul>
+<h3 id="local-alignment-algorithm-and-its-derivation"><strong>Local Alignment Algorithm and its derivation</strong> </h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%8F%B2%E5%AF%86%E6%96%AF-%E6%B2%83%E7%89%B9%E6%9B%BC%E7%AE%97%E6%B3%95">Smith-Waterman algorithm</a></p>
+<h3 id="basic-local-alignment-search-tool-blast-alignment"><strong>Basic Local Alignment Search Tool (BLAST) alignment</strong> </h3>
+<p></p>
+<h4 id="methods-heuristic-search-algorithm"><strong>Methods: Heuristic Search Algorithm</strong> </h4>
+<p>The minimal searching units are k-mer tuples, instead of a single residue.<br>
+&nbsp;<br>
+To do this, the first step is to construct a k-mer table <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<h4 id="methods-local-alignment"><strong>Methods: Local Alignment</strong> </h4>
+<p>The local alignment strategy in BLAST can be described by a <em>Seeding-Scanning-Extension</em> workflow.<br>
+&nbsp;<br>
+The seeding process is based on the aforementioned <a href="#methods-heuristic-search-algorithm">heuristic search method</a>. The expected outcome of <em>seeding</em> is obtaining a bunch of "similar" k-mers.<br>
+&nbsp;<br>
+<em>Scanning</em> tries to locate the k-mers obtained in <em>seeding</em> among sequences in databases.<br>
+&nbsp;<br>
+Subsequently, sequence elements at two ends of seeds compare with the corresponding amino acids (or nucleic acids) in searched sequences, along with scoring element-wise. This process, <em>extension</em>, terminates as the score starts to decrease and attains a high-scoring segment pair, <strong>HSP</strong>.<br>
+&nbsp;<br>
+For both protein sequence alignment and nucleotide sequence alignment. BLASTN is the platform to perform a nucleotide alignment, while BLASTP is the platform to perform a protein alignment.</p>
+<h3 id="blast-setup">BLAST Setup </h3>
+<p></p>
+<h4 id="max-target-sequences"><strong>Max target sequences</strong> </h4>
+<p></p>
+<h4 id="max-matches-in-a-query-range"><strong>Max matches in a query range</strong> </h4>
+<p></p>
+<h4 id="database"><strong>Database</strong> </h4>
+<p></p>
+<ul>
+<li>Non-redundant (nr) db is the default database used in BLAST search.</li>
+<li>Clustered db like <strong>UniRef90</strong> and <strong>UniRef50</strong> are more prefered, where UniRef90 clusters sequences have 90% sequence identity. UniRef50 clusters sequences have 50% sequence identity.</li>
+<li>RefSeq and Swiss-Prot are databases smaller in scale, but composed of manually annotated entries.<br>
+&nbsp;<br>
+Since the significant difference between clustered db and other non-clustered dbs is <strong>entries with a similarity larger than the specified value</strong> will be merged into one entry, the searching time can be significantly reduced by adapting clustered dbs, while at a cost of slightly resolution reduction.</li>
+</ul>
+<h4 id="scoring-matrix"><strong>Scoring matrix</strong> </h4>
+<p>Changing the substitution matrix causes different searching results.<br>
+&nbsp;<br>
+Read about substitution matrices on <a href="https://en.wikipedia.org/wiki/Substitution_matrix">Wikipedia</a> and <a href="https://www.ncbi.nlm.nih.gov/blast/html/sub_matrix.html">NCBI BLAST</a>.</p>
 <h3 id="result-interpretation-genbank-and-graphview">Result Interpretation: GenBank and Graphview </h3>
 <p>View external information for each hit from the link to <strong>GenBank</strong> or <strong>Graphview</strong> (legend: <a href="https://www.ncbi.nlm.nih.gov/tools/sviewer/legends/#anchor_8">NCBI Graphview legend interpretation</a>)</p>
 <h3 id="result-interpretation-layout">Result Interpretation: Layout </h3>
+<p></p>
 <table>
 <thead>
 <tr>
@@ -75,45 +224,52 @@ We remind users that they should always use the primary accession number of an e
 </thead>
 <tbody>
 <tr>
-<td>Relevant close to far, the most distantly-related taxon locates at the last second row</td>
+<td>Relevant close to far, the most distantly-related taxon is located at the last second row</td>
 <td></td>
 <td>Descending</td>
 <td>Descending</td>
 </tr>
 </tbody>
 </table>
+<p></p>
 <h3 id="result-interpretation-parameters">Result Interpretation: Parameters </h3>
-<h4 id="query-coverage-the-length-of-the-match"><strong>Query Coverage</strong>: The length of the match </h4>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>g</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>A</mi><mi>l</mi><mi>i</mi><mi>g</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="1em"></mspace><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow><mrow><mi>Q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mspace width="1em"></mspace><mi>s</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>e</mi><mi>n</mi><mi>c</mi><mi>e</mi><mspace width="1em"></mspace><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">Coverage = \frac {Alignment\quad length} {Query\quad sequence\quad length} × 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.03588em;">ery</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal">se</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">ce</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span></p>
-<h4 id="bit-score-a-matrix-generated-by-alignment-algorithm"><strong>Bit Score:</strong> A matrix generated by alignment algorithm </h4>
-<p>To reduce the computation cost, calculate the upper triangular matrix instead of the whole matrix.</p>
+<p></p>
+<h4 id="query-coverage-what-proportion-of-the-queried-sequence-is-involved-in-the-match"><strong>Query Coverage</strong>: What proportion of the queried sequence is involved in the match </h4>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>g</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>A</mi><mi>l</mi><mi>i</mi><mi>g</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="1em"></mspace><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow><mrow><mi>Q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mspace width="1em"></mspace><mi>s</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>e</mi><mi>n</mi><mi>c</mi><mi>e</mi><mspace width="1em"></mspace><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">Coverage = \frac{Alignment\quad length}{Query\quad sequence\quad length}\times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.03588em;">ery</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal">se</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">ce</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span></p>
+<h4 id="percentile-identity-what-proportion-of-amino-acids-is-identical-in-the-compared-region"><strong>Percentile Identity</strong>: What proportion of amino acids is identical in the compared region </h4>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>i</mi><mi>t</mi><mi>y</mi><mo>=</mo><mfrac><mrow><mi>A</mi><mi>l</mi><mi>i</mi><mi>g</mi><mi>n</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="1em"></mspace><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">Identity = \frac {Alignment\quad length}{min(A, B)}\times 100 \%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3074em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">nm</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span></span><br>
+&nbsp;<br>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> is the length of the reference sequence. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> is the length of the mobile sequence.</p>
+<h4 id="bit-score"><strong>Bit Score</strong> </h4>
+<p>Bit scores are normalised raw scores making raw scores obtained through different algorithms comparable.</p>
+<blockquote>
+<p>The bit score tells you the alignment score that BLAST calculated between your query sequence and the hit. This is a measure of how good the hit is. Take care when interpreting this as the maximum score possible is a function of the length of the query sequence and the hit. Bit scores between BLAST searches with different query sequences are not comparable.</p>
+</blockquote>
 <h4 id="e-value-the-significance-of-the-match"><strong>E-value:</strong> The significance of the match </h4>
+<p></p>
+<blockquote>
+<p>The e-value tells us how many hits with this score or better we would expect to find at random, given the size of the sequence database we searched.</p>
+</blockquote>
 <h5 id="formula-to-calculate">Formula to calculate </h5>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mi>K</mi><mo>×</mo><mi>m</mi><mo>×</mo><mi>n</mi><mo>×</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>l</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>d</mi><mi>a</mi><mo>×</mo><mi>S</mi></mrow></msup></mrow><annotation encoding="application/x-tex">E=K \times m \times n \times e^ {-lambda\times S}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">amb</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p>Where <em>S</em> denotes the homolog scores between two sequences, <em>m</em> denotes the length of the target sequence, <em>n</em> denotes the size of database, and <em>K</em> and <em>n</em> are parameters depending on algorithm and database.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mi>K</mi><mo>×</mo><mi>m</mi><mo>×</mo><mi>n</mi><mo>×</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>l</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>d</mi><mi>a</mi><mo>×</mo><mi>S</mi></mrow></msup></mrow><annotation encoding="application/x-tex">E = K \times m\times n\times e^{-lambda \times S}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">amb</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span></span></span></span></span></span></span></span></span> &nbsp;<br>
+&nbsp;<br>
+Where <em>S</em> denotes the homolog scores between two sequences, <em>m</em> denotes the length of the target sequence, <em>n</em> denotes the size of the database, and <em>K</em> and <em>n</em> are parameters depending on the algorithm and database.</p>
 <h5 id="values">Values </h5>
+<p></p>
 <ul>
-<li>
-<p>E-value &lt; 0.01: commonly considered significant, but there are features of biological sequences which can confound this so care is advised</p>
-</li>
-<li>
-<p>E-value &lt; 1e-5: usually homologues</p>
-</li>
-<li>
-<p>E-value &gt; 0.01: doesn't necessarily mean a hit is false</p>
-</li>
-<li>
-<p>E-values are normalized basing on each database, only E-values from the same db are comparable.</p>
-</li>
-<li>
-<p>Bit scores between BLAST searches with different query sequences are not comparable.</p>
-</li>
+<li>E-value &lt; 0.01: commonly considered significant, but there are features of biological sequences which can confound this so care is advised</li>
+<li>E-value &lt; 1e-5: usually homologues</li>
+<li>E-value &gt; 0.01: doesn't necessarily mean a hit is false</li>
+<li>E-values are normalised based on each database. Only E-values from the same db are comparable.</li>
+<li>Bit scores between BLAST searches with different query sequences are not comparable.</li>
 </ul>
 <h4 id="length-of-hit"><strong>Length of hit</strong> </h4>
+<p></p>
 <blockquote>
 <p>It is possible to get good (i.e. small) e-values even if only a small regions of your query sequence is matched by a hit. In such instances you might consider very short matches as False Positives, even when the e-values are below the values you're looking for.</p>
 </blockquote>
-<h3 id="other-blast-algorithm">Other BLAST algorithm </h3>
+<h3 id="other-blast-algorithms">Other BLAST algorithms </h3>
+<p></p>
 <table>
 <thead>
 <tr>
@@ -140,10 +296,50 @@ We remind users that they should always use the primary accession number of an e
 </tr>
 </tbody>
 </table>
+<p></p>
 <h3 id="result-inspection">Result inspection </h3>
-<p>Check the organism of query and hit.</p>
-<p>Hit has high bit score but presents in a irrelevant organism might be a FP.</p>
+<p>Check the organism of the query and hit.<br>
+&nbsp;<br>
+Hit with a high bit score but presents in an irrelevant organism might be an FP.<br>
+&nbsp;<br>
+Also, be aware of <strong>Low complexity regions</strong>. Low complexity regions are regions composed of highly duplicated regions, which are commonly observed in hydrophobic regions of transmembrane proteins. A BLAST search may hit these sequences and yield high scores, but be devoid of biological meaning.</p>
 <h2 id="msa"><strong>MSA</strong> </h2>
+<h2 id="bioinformatics-as-evolutionary-analysis"><strong>Bioinformatics as evolutionary analysis</strong> </h2>
+<h3 id="concepts-to-be-clear-homolog-paralog-and-ortholog">Concepts to be clear: Homolog, Paralog, and Ortholog </h3>
+<ul>
+<li>Homolog: Two genes sharing the same ancestor are homologous.</li>
+<li>Paralog: homologs found within an organism.</li>
+<li>Ortholog: homologs found between organisms.</li>
+</ul>
+<h3 id="mutation-under-molecule-level-aspect">Mutation under molecule-level aspect </h3>
+<p>The predominant mutations are detrimental, with organisms being purified in turn.<br>
+The remained mutations can either be neutral in phenotype (randomly accepted) or positive.</p>
+<h4 id="mutation-at-genetic-level">Mutation at genetic level </h4>
+<ul>
+<li>Substitution (silent, missense, or nonsense)</li>
+<li>Insertion</li>
+<li>Deletion</li>
+</ul>
+<h4 id="mutation-at-chromosomal-level">Mutation at chromosomal level </h4>
+<ul>
+<li>Deletion</li>
+<li>Translocation and inversion</li>
+<li>Gene conversion</li>
+<li>Duplication</li>
+</ul>
+<p>There are various possible fates of the gene which undergoes a duplication:</p>
+<ul>
+<li>Exerting the same effect as the original gene.</li>
+<li>Being "muted": lose expression ability.</li>
+<li>Evolving to undertake new biology functions.</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>the usually case is that k=3, which means the whole table contains <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>20</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">20^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">2</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> trigram residue tuples. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
       </div>
       

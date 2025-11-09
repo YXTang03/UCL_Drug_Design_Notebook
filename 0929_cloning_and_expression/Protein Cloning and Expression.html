@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -27,59 +27,140 @@
 <h1 id="protein-cloning-and-expression">Protein Cloning and Expression </h1>
 <h2 id="why-we-need-cloning">Why We Need Cloning? </h2>
 <ul>
-<li>Exploit the expression capabilities for large scale production.</li>
+<li>Exploit the expression capabilities for large-scale production.</li>
 <li>Work with the intended protein directly, instead of its orthologs.</li>
-<li>Highly customizable property make it possible to add tags, purify the protein easily。</li>
+<li>Highly customisable property makes it possible to add tags and purify the protein easily.<br>
+<br></li>
+<li>Cost-effective.</li>
+<li>No risk of contamination by pathogens present in source material.</li>
+</ul>
+<p>Research on the application of protein itself:</p>
+<ul>
+<li>Proteins as therapeutics in their own right.</li>
+<li>Diagnostic molecules.</li>
+</ul>
+<p>Proteins as targets:</p>
+<ul>
+<li>Investigation in the involvement in a disease of interest</li>
 </ul>
 <h2 id="process">Process </h2>
-<p><img src="image.png" alt="alt text"></p>
 <p>Main procedures include:</p>
 <ul>
 <li><a href="#isolate-the-gene-of-interest">Isolate gene</a></li>
 <li><a href="#clone-the-gene-into-a-vector">Clone the gene into a vector</a></li>
 <li><a href="#transfer-into-a-host">Transfer</a></li>
-<li>Protein expression</li>
+<li>Extract and purify the protein</li>
 </ul>
-<h3 id="isolate-the-gene-of-interest">Isolate the gene of interest </h3>
+<h3 id="isolate-the-gene-of-interest">Isolate the Gene of Interest </h3>
+<h4 id="methods-to-isolate-genes">Methods to Isolate genes </h4>
 <p>There are two methods to isolate gene from organisms: using cDNA libraries and using genomic DNA libraries.</p>
-<p>cDNA library refers to the gene sourced from reverse transcription of mRNA. A very straightforward feature is  obtained genes do not have introns and reflect what is transcribed.</p>
-<p>Genomic DNA library is another situation: introns are included because genes obtained through this method come from chromosome. Meanwhile, regulatory genomic regions of DNA, along with other non-coding regions are also reserved.</p>
-<p>One thing to note is that <strong>tRNA abundance discrepancies</strong><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> are often observed between the gene source organisms and the expression hosts. This difference further changes the translation rate directly, and may lead to protein misfolding or protein aggreation<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>. Thus, <strong>codon optimisation</strong> is very necessary.</p>
+<p>cDNA library refers to the gene source derived from the reverse transcription of mRNA. A very straightforward feature is&nbsp;obtained genes do not have introns and reflect what is transcribed.</p>
+<p>Genomic DNA library is another situation: introns are included because genes obtained through this method are derived from chromosomes. Meanwhile, regulatory genomic regions of DNA, along with other non-coding areas are also reserved.</p>
+<h4 id="codon-optimisation">Codon Optimisation </h4>
+<p>One thing to note is that <strong>tRNA abundance discrepancies</strong><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> are often observed between the gene source organisms and the expression hosts. This difference further alters the translation rate directly and may lead to protein misfolding or protein aggregation <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>. Thus, <strong>codon optimisation</strong> is essential.</p>
 <p><img src="image-7.png" alt="alt text"></p>
+<p>Other factors, such as the possible containing restriction enzyme cutting site in inserted gene, are also reasons why codon optimisation is needed.</p>
 <h3 id="clone-the-gene-into-a-vector">Clone the gene into a vector </h3>
-<p>Vector is a circular autonomously replicating DNA element. The most often used vector is the E.coli plasmid.</p>
-<h4 id="antibiotic-marker">Antibiotic marker </h4>
+<p>Vector is a circular autonomously replicating DNA element. The most often used vector is the E. coli plasmid.</p>
+<h4 id="components-in-vectors">Components in vectors </h4>
+<p>There are two kinds of vectors: Expression vector and Cloning vector. The two types of vectors often do not co-exist in the same colony, unless extra complex <a href="#choose-different-antibiotics">procedures</a> are executed. Differences between expression vectors and cloning vectors are shown below.</p>
+<table>
+<thead>
+<tr>
+<th>Features</th>
+<th>Cloning Vector</th>
+<th>Expression Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function</td>
+<td>Used to clone, and reserve recombinant DNA</td>
+<td>Expressing proteins</td>
+</tr>
+<tr>
+<td>Promoters</td>
+<td>Weak or None</td>
+<td>Strong and controllable<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>. Commonly used promoters include T7 or lac promoter<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>N/A</td>
+<td>Owing tags such as soluble tag<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> and TEV tag<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup></td>
+</tr>
+</tbody>
+</table>
+<p>Standard components in vectors include:</p>
+<ul>
+<li>For reproduction: Origin of replication</li>
+<li>For transcription: transcription promoter/ terminator site and ribosome binding site (<strong>Only exists in prokaryotic cells</strong>)</li>
+<li>For translation: start/ stop codon</li>
+<li><a href="#antibiotic-marker">Antibiotic resistance gene</a></li>
+<li><a href="#multiple-cloning-site-mcs">Cloning site</a></li>
+<li>Tags, expression promoters, etc. (<strong>Only exist in expression vectors</strong>)</li>
+</ul>
+<h5 id="antibiotic-marker">Antibiotic marker </h5>
 <p>Add an antibiotic marker to force the cell to maintain the inserted DNA element.</p>
-<h4 id="multiple-cloning-sitemcs">Multiple cloning site(MCS) </h4>
-<p>A region in cloning vector does not exist in wild type E.coli. Rather, it is engineered by human and <strong>contains numerouse specific DNA sequences recognised by restriction enzymes</strong>. Meanwhile, the original restriction enzyme system in E.coli is destructed. So that it will not degrade the inserted region.</p>
-<p>There is a strategy to identify whether a gene sequence has been correctly inserted into MCS called 'blue white selection'.</p>
+<h6 id="choose-different-antibiotics">Choose different antibiotics </h6>
+<p>Some antibiotics are stricter in terms of the selective pressure they put cells under. Use these antibiotics in cases where the host expresses unfavourable genes. Commonly used antibiotics are ampicillin, kanamycin, and chloramphenicol.</p>
+<p>Maintain more than one plasmid at a time.</p>
+<h5 id="multiple-cloning-site-mcs">Multiple cloning site (MCS) </h5>
+<p>MCS is a region in a cloning vector which does not exist in the wild-type E. coli. Rather, it is engineered by human and <strong>contains numerous specific DNA sequences recognised by restriction enzymes</strong>. Meanwhile, the original restriction enzyme system in E. coli is destroyed so that it will not degrade the inserted region.</p>
+<p>There is a strategy to identify whether a gene sequence has been correctly inserted into the MCS called '<font color="steelblue">blue</font> <font color="white">white</font> selection'.</p>
 <pre class="language-text">MCS before recombinant -express-&gt; One kind of protein -add specific substrate-&gt; Become blue
 
 MCS with inserted sequence -&gt; Fail to express that kind of protein -&gt; No colour change when substrate added.
 </pre>
-<h4 id="additional-elements-in-prokaryotic-expression-system">Additional elements in prokaryotic expression system </h4>
-<p>Typically have:</p>
-<ul>
-<li>Inducible promoter such as T7 promoter or lac promoter.</li>
-<li>lacl: lac repressor protein, to stronly repress baseline expression. It is useful to handle toxic expressions so that leaky expression will not kill hosts.</li>
-<li>Solubility tag: highly stable and quickly folding tags can stimulate the expressed proteins fold while inhibiting aggregation.</li>
-<li>TEV tag: very specific to protease, allowing remove tags before or after purification.</li>
-</ul>
-<p><img src="image-8.png" alt="alt text"></p>
-<p>Some promoters might be too expressive, causing nascent nucleic acids sequences do not have enough time to fold then aggregate.</p>
-<h4 id="choose-different-antibiotics">Choose different antibiotics </h4>
-<p>Some antibiotics are more strict in terms of selective pressure they put cells under. Use these antibiotics in case of expressing host unfavorable genes.</p>
-<p>Maintain more than one plasmid at one time.</p>
+<h6 id="restriction-enzymes">Restriction enzymes </h6>
+<p>Restriction enzymes are an array of enzymes that recognise specific DNA sequences and hydrolyse the phosphodiester bonds. Various types of cutting ends, such as blunt ends, 3'/5' overhangs, and single-strand overhangs, can be attained after the process of restriction enzymes.</p>
+<h4 id="other-cloning-strategies">Other cloning strategies </h4>
+<p>Ligation-independent cloning<br>
+Non-enzymatic approaches</p>
 <h4 id="problems-may-occur">Problems may occur </h4>
-<p><img src="image-9.png" alt="alt text"></p>
-<h4 id="miscellaneous">Miscellaneous </h4>
-<p>Express gene at hosts' log phase, unless the expressed protein is toxic.</p>
-<p>There are also some kinds of proteins hard to recombinant in E.coli such as <em>transmemberane proteins</em>.</p>
-<h3 id="transfer-into-a-host">Transfer into a host </h3>
-<h4 id="transient-transfection-or-stable-transfection">Transient transfection or stable transfection </h4>
-<p>Transient transfection: do not use an introducer to integrate DNA elements into the host DNA.</p>
-<p>Stable transfection: On the contrary.</p>
-<h4 id="transfer-into-a-mammalian-vector">Transfer into a mammalian vector </h4>
+<ul>
+<li>Protein misfolding/aggregation</li>
+<li>Inclusion body formation</li>
+<li>Loss of production because of toxicity</li>
+<li>Fail to form disulfide bonds</li>
+<li>Absence of post-translation modification</li>
+<li>Presence of rare codons</li>
+<li>Product being degraded by proteases</li>
+</ul>
+<h4 id="solution-expression-environment-modification">Solution: Expression environment modification </h4>
+<p>Modify E. coli genes to:</p>
+<ul>
+<li>Create an oxidising environment</li>
+<li>Express cold resist chaperon and prepare for low temperature expression</li>
+<li>Produce tRNA of rare codons</li>
+<li>have mutations in transporters to allow titratable induction of expression</li>
+</ul>
+<p>Decorating expressed proteins with signal peptides, which direct peptides to the ER or the plasma environment.</p>
+<h4 id="solution-modify-the-protein">Solution: Modify the protein </h4>
+<ul>
+<li>Add soluble tags to prevent aggregation</li>
+<li>Introduce a protease cleavage site that can be engineered to remove the tag before/after purification</li>
+</ul>
+<h4 id="solution-alter-experiment-conditions">Solution: Alter experiment conditions </h4>
+<ul>
+<li><strong>Temperature</strong>: Decreasing the expression temperature (low temperature expression) to slow down the expression speed</li>
+<li><strong>Timing</strong>: Induce expression later than usual (avoid expressing in the log phase)</li>
+</ul>
+<h4 id="solution-express-in-a-different-host">Solution: Express in a different host </h4>
+<h5 id="construct-in-prokaryotic-cells-and-express-in-eukaryotic-cells">Construct in prokaryotic cells, and express in eukaryotic cells </h5>
+<p>Construct and reproduction:</p>
+<ul>
+<li>In E. coli</li>
+<li>Vector contains origin of replication and selectable markers (antibiotic resistant gene)</li>
+<li>Muted expression promoters</li>
+</ul>
+<p>Expression:</p>
+<ul>
+<li>In eukaryotic cells (mammalian cells, yeast cells, and insect cells)</li>
+<li>Send the plasmids into expression cells through transfection</li>
+<li>Activate eukaryotic promoters. Initiate transcription and translation</li>
+<li>Constitutive or inducive</li>
+</ul>
+<p>Express in mammalian cells:</p>
 <table>
 <thead>
 <tr>
@@ -97,17 +178,102 @@ MCS with inserted sequence -&gt; Fail to express that kind of protein -&gt; No c
 <td>Cell culture can only be performed for a finite amount of time</td>
 </tr>
 <tr>
-<td>Cells secret proteins into medium</td>
+<td>Cells secret proteins into the medium</td>
 <td>Costly</td>
 </tr>
 </tbody>
 </table>
+<h4 id="miscellaneous">Miscellaneous </h4>
+<p>Express genes at the hosts' log phase, unless the expressed protein is toxic.</p>
+<p>There are also some kinds of proteins hard to recombinant in E. coli, such as <em>transmembrane proteins</em>.</p>
+<h3 id="transfer-into-a-host">Transfer into a host </h3>
+<p>Transformation is the process by which foreign DNAs are introduced into bacterial cells. This process can be achieved through <strong>chemical</strong> (osmotic pressure) or <strong>electroporation</strong>.</p>
+<h4 id="transient-transfection-or-stable-transfection">Transient transfection or stable transfection </h4>
+<p>Transient transfection: do not use an introducer to integrate DNA elements into the host DNA. As cells reproduce, introduced genes will be degraded and 'vanish'.</p>
+<p>Stable transfection: Persistence of the transfer of genes through integration into the host's chromosome.</p>
+<h4 id="choose-an-expression-system-based-on-requirements">Choose an expression system based on requirements </h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>E. coli</th>
+<th>Yeast</th>
+<th>Mammalian</th>
+<th>In vitro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cost of growth medium</td>
+<td>Low</td>
+<td>Low</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Product yield/volume</td>
+<td>High</td>
+<td>High</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Folded, functional mammalian protein</td>
+<td>Sometimes</td>
+<td>Often</td>
+<td>Yes</td>
+<td>Often</td>
+</tr>
+<tr>
+<td>Glycosylation</td>
+<td>No</td>
+<td>Yes, but different</td>
+<td>Full</td>
+<td>Yes if mammalian</td>
+</tr>
+<tr>
+<td>Time from cloning to expression</td>
+<td>Fast</td>
+<td>Medium</td>
+<td>Slow</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>Ease of growth/ avoid contamination</td>
+<td>Easy</td>
+<td>Easy</td>
+<td>Difficult</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>Location of recombinant product</td>
+<td>Intracellular cytosol/periplasm</td>
+<td>Intracellular or extracellular</td>
+<td>Extracellular</td>
+<td>Solution</td>
+</tr>
+</tbody>
+</table>
+<p>In summary, from E. coli to yeast to mammalian cells, the cost and time consumed on culture increase, while biological functions are better preserved.</p>
+<h3 id="problems-to-be-concerned">Problems to be concerned </h3>
+<p><img src="image-14.png" alt="alt text"><br>
+<img src="image-19.png" alt="alt text"><br>
+<img src="image-20.png" alt="alt text"><br>
+<img src="image-21.png" alt="alt text"></p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Some tRNAs are used preferentially in highly expressed genes. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn2" class="footnote-item"><p>Nascent peptide chains find their conformation while they are being produced. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>lacl: lac repressor protein, to strongly repress baseline expression. It is helpful to handle toxic expressions so that leaky expression will not kill hosts. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><img src="image-8.png" alt="alt text">Shown is the prokaryotic expression system regulated by the lac operator. Some promoters might be too expressive, causing nascent nucleic acids sequences do not have enough time to fold then aggregate. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>Solubility tag: highly stable and quickly folding tags can stimulate the expressed proteins to fold while inhibiting aggregation. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>TEV tag: particular to protease, allowing the removal of tags before or after purification. <a href="#fnref6" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
